@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Waitlist | Supreme Beauty</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="cursor-glow"></div>
+<header class="topbar">
+  <a href="index.html" class="nav-logo"><img src="SBlogo.PNG" alt="Supreme Beauty Logo"></a>
+
+  <button class="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="standard.html">Our Standard</a>
+    <a href="brands.html">Brands</a>
+    <a href="experience.html">Experience</a>
+    <a href="founder.html">Founder</a>
+    <a href="waitlist.html">Waitlist</a>
+    <button class="theme-toggle" type="button">Dark</button>
+  </nav>
+</header>
+<main>
+<section class="contact-section">
+  <div class="contact-copy reveal">
+    <p class="kicker">Launching Soon</p>
+    <h1>Join the Supreme Beauty waitlist.</h1>
+    <p>Get early access to launch updates, product drops, community events, brand partnerships, and future storefront announcements.</p>
+  </div>
+
+  <form class="waitlist-form reveal" action="https://formsubmit.co/jessica.supreme2@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New Supreme Beauty Waitlist Submission">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off">
+    <input type="text" name="first_name" placeholder="First name" required>
+    <input type="email" name="email" placeholder="Email address" required>
+    <select name="interest" required>
+      <option value="">I am interested in...</option>
+      <option>Shopping the launch</option>
+      <option>Brand partnership</option>
+      <option>Creator collaboration</option>
+      <option>Stylist / salon database</option>
+      <option>Investor / business updates</option>
+    </select>
+    <button class="btn btn-dark" type="submit">Submit</button>
+    <p class="form-message"></p>
+  </form>
+</section>
+</main>
+<footer class="footer">
+  <img src="SBlogo.PNG" alt="Supreme Beauty Logo">
+  <div>
+    <p>© 2026 Supreme Beauty. Beauty retail, rebuilt with trust.</p>
+    <p class="micro">Beauty You Deserve.</p>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
