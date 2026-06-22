@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://www.supremexbeauty.com/</loc>
   </url>
+
+  <url>
+    <loc>https://www.supremexbeauty.com/shop.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.supremexbeauty.com/brands.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.supremexbeauty.com/founder.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.supremexbeauty.com/experience.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.supremexbeauty.com/waitlist.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.supremexbeauty.com/standard.html</loc>
+  </url>
+
 </urlset>
