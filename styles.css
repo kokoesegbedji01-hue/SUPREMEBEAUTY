@@ -205,13 +205,12 @@ body.dark select:focus {
   cursor: not-allowed;
 }
 
-
-/* Founder photo fix: show full image without cutting it off */
+/* Founder photo fix: crop tiny edge/sliver but keep clean layout */
 .founder-hero .page-hero-img,
 .founder-img {
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center center !important;
-  background: var(--offwhite);
+  background: transparent !important;
   max-height: 720px;
   padding: 0 !important;
   border-left: none !important;
