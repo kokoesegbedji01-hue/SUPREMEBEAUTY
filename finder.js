@@ -7,7 +7,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function initMap(lat,lon,z){
   if(typeof L==='undefined'){document.getElementById('f-status').textContent='The map could not load. Check your internet connection and refresh.';return false}
   if(!map){map=L.map('map').setView([lat,lon],z||12);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,attribution:'&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
     layer=L.layerGroup().addTo(map);}
   else{map.setView([lat,lon],z||12);layer.clearLayers();}
   markers=[];
