@@ -34,7 +34,7 @@ function overpass(q){
     'https://overpass.kumi.systems/api/interpreter'
   ];
   return new Promise(function(resolve,reject){
-    var done=false,started=0,failed=0,ctls=[],timers=[];
+    var done=false,started=0,failed=0,ctls=[],timers=[],lastMsg='';
     function finish(fn,val){
       if(done)return;done=true;
       timers.forEach(clearTimeout);
@@ -48,12 +48,17 @@ function overpass(q){
       timers.push(setTimeout(function(){c.abort()},20000));
       fetch(url,{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},signal:c.signal})
         .then(function(r){if(!r.ok)throw new Error('ov '+r.status);return r.json()})
-        .then(function(d){finish(resolve,d)})
+        .then(function(d){
+          // Overpass can answer "200 OK" with an empty list and a remark when it is overloaded or timed out.
+          if(!d||!Array.isArray(d.elements)||(d.remark&&!d.elements.length))throw new Error('ov remark: '+(d&&d.remark));
+          finish(resolve,d);
+        })
         .catch(function(err){
           if(done)return;
           console.warn('Overpass server failed:',url,err);
           failed++;
-          if(failed>=eps.length)finish(reject,new Error('ov'));else startNext();
+          lastMsg=String((err&&err.message)||err);
+          if(failed>=eps.length)finish(reject,new Error('ov: '+lastMsg));else startNext();
         });
     }
     cancelPrev=function(){finish(reject,new Error('cancel'))};
@@ -83,7 +88,7 @@ document.getElementById('finder-form').addEventListener('submit',function(e){
     if(cache[key])return cache[key];
     var m=Math.round(mi*1609),q='[out:json][timeout:25];(';
     Q[type].forEach(function(f){q+='nwr'+f+'(around:'+m+','+lat+','+lon+');'});q+=');out center tags 80;';
-    return overpass(q).then(function(d){cache[key]=d;return d});
+    return overpass(q).then(function(d){if(d.elements.length)cache[key]=d;return d});
   }).then(function(d){
     if(my!==current)return;
     var items=d.elements.filter(function(x){return x.tags&&x.tags.name}).slice(0,60);
@@ -95,7 +100,7 @@ document.getElementById('finder-form').addEventListener('submit',function(e){
   }).catch(function(err){
     if(my!==current||err.message==='stale'||err.message==='cancel')return;
     console.error('Finder error:',err);
-    st.textContent=err.message==='zip'?'We could not find that ZIP code.':'The directory is busy right now. Please try again in a moment.';
+    st.textContent=err.message==='zip'?'We could not find that ZIP code.':'The directory is busy right now. Please try again in a moment. (' + String(err.message).slice(0,80) + ')';
   });
 });
 document.getElementById('f-list').addEventListener('click',function(e){
